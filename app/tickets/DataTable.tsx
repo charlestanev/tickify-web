@@ -23,13 +23,13 @@ const DataTable = ({ tickets }: Props) => {
                         {tickets && tickets.length > 0 ? tickets.map(ticket => (
                             <TableRow key={ticket.id} className="hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                                 <TableCell className="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">{ticket.title}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{ticket.status}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{ticket.status}</TableCell>
                                 <TableCell className={`px-6 py-4 whitespace-nowrap text-sm ${getPriorityClass(ticket.priority)}`}>{ticket.priority}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{new Date(ticket.createdAt).toLocaleDateString()}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{new Date(ticket.createdAt).toLocaleDateString()}</TableCell>
                             </TableRow>
                         )) : (
                             <TableRow>
-                                <TableCell colSpan={4} className="px-6 py-4 text-center text-sm text-secondary">No tickets found</TableCell>
+                                <TableCell colSpan={4} className="px-6 py-4 text-center text-sm" style={{ color: 'var(--muted-foreground)' }}>No tickets found</TableCell>
                             </TableRow>
                         )}
                     </TableBody>
@@ -48,7 +48,7 @@ const getPriorityClass = (priority: string) => {
         case 'LOW':
             return 'text-green-500 font-semibold';
         default:
-            return 'text-secondary';
+            return 'var(--muted-foreground)';
     }
 }
 
