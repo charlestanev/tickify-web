@@ -13,23 +13,23 @@ const DataTable = ({ tickets }: Props) => {
                 <Table className="min-w-full divide-y divide-gray-200 border">
                     <TableHeader className="">
                         <TableRow>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Title</TableHead>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Status</TableHead>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Priority</TableHead>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Created At</TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Title</TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Status</TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Priority</TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Created At</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody className="divide-y divide-gray-200">
                         {tickets && tickets.length > 0 ? tickets.map(ticket => (
                             <TableRow key={ticket.id} className="hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                                 <TableCell className="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">{ticket.title}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{ticket.status}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{ticket.status}</TableCell>
                                 <TableCell className={`px-6 py-4 whitespace-nowrap text-sm ${getPriorityClass(ticket.priority)}`}>{ticket.priority}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(ticket.createdAt).toLocaleDateString()}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{new Date(ticket.createdAt).toLocaleDateString()}</TableCell>
                             </TableRow>
                         )) : (
                             <TableRow>
-                                <TableCell colSpan={4} className="px-6 py-4 text-center text-sm text-gray-500">No tickets found</TableCell>
+                                <TableCell colSpan={4} className="px-6 py-4 text-center text-sm text-secondary">No tickets found</TableCell>
                             </TableRow>
                         )}
                     </TableBody>
@@ -48,7 +48,7 @@ const getPriorityClass = (priority: string) => {
         case 'LOW':
             return 'text-green-500 font-semibold';
         default:
-            return 'text-gray-500';
+            return 'text-secondary';
     }
 }
 
