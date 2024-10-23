@@ -69,3 +69,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .navbar-link {
+    @apply font-medium text-muted-foreground transition-colors hover:text-primary;
+
+  }
+}
