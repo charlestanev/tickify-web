@@ -1,3 +1,4 @@
+import TicketStatusBadge from '@/components/TicketStatusBadge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Ticket } from '@prisma/client'
 import React from 'react'
@@ -14,8 +15,14 @@ const DataTable = ({ tickets }: Props) => {
                     <TableHeader className="">
                         <TableRow>
                             <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Title</TableHead>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Status</TableHead>
-                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Priority</TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">
+                                <div className="flex justify-center">Status</div>
+                            </TableHead>
+                            <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">
+                                <div className="flex justify-center">
+                                    Priority
+                                </div>
+                            </TableHead>
                             <TableHead className="px-6 py-3 text-left text-xs font-medium text-primary-900 uppercase tracking-wider">Created At</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -23,9 +30,21 @@ const DataTable = ({ tickets }: Props) => {
                         {tickets && tickets.length > 0 ? tickets.map(ticket => (
                             <TableRow key={ticket.id} className="hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                                 <TableCell className="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary">{ticket.title}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{ticket.status}</TableCell>
-                                <TableCell className={`px-6 py-4 whitespace-nowrap text-sm ${getPriorityClass(ticket.priority)}`}>{ticket.priority}</TableCell>
-                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{new Date(ticket.createdAt).toLocaleDateString()}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>
+                                    <div className="flex justify-center">
+                                        <TicketStatusBadge status={ticket.status} />
+                                    </div>
+                                </TableCell>
+
+                                <TableCell className={`px-6 py-4 whitespace-nowrap text-sm ${getPriorityClass(ticket.priority)} flex justify-center`}>{ticket.priority}</TableCell>
+                                <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{new Date(ticket.createdAt).toLocaleDateString("en-US", {
+                                    year: "2-digit",
+                                    month: "2-digit",
+                                    day: "2-digit",
+                                    hour: "numeric",
+                                    minute: "2-digit",
+                                    hour12: true,
+                                })}</TableCell>
                             </TableRow>
                         )) : (
                             <TableRow>
