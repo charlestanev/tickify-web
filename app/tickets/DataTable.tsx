@@ -1,3 +1,4 @@
+import TicketPriority from '@/components/TicketPriority'
 import TicketStatusBadge from '@/components/TicketStatusBadge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Ticket } from '@prisma/client'
@@ -36,7 +37,9 @@ const DataTable = ({ tickets }: Props) => {
                                     </div>
                                 </TableCell>
 
-                                <TableCell className={`px-6 py-4 whitespace-nowrap text-sm ${getPriorityClass(ticket.priority)} flex justify-center`}>{ticket.priority}</TableCell>
+                                <TableCell className={`px-6 py-4 whitespace-nowrap text-sm flex justify-center`}>
+                                    <TicketPriority priority={ticket.priority}/>
+                                </TableCell>
                                 <TableCell className="px-6 py-4 whitespace-nowrap text-sm" style={{ color: 'var(--muted-foreground)' }}>{new Date(ticket.createdAt).toLocaleDateString("en-US", {
                                     year: "2-digit",
                                     month: "2-digit",
